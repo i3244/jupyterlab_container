@@ -1,0 +1,17 @@
+version: "3"
+services:
+  notebook:
+    build:
+      context: .
+      args:
+        http_proxy:   "${http_proxy}"
+        https_proxy:  "${https_proxy}"
+    environment:
+      JUPYTER_ENABLE_LAB: "yes"
+      http_proxy:   "${http_proxy}"
+      https_proxy:  "${https_proxy}"
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./work:/home/jovyan/work
+    command: start-notebook.sh --NotebookApp.token=''
